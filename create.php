@@ -16,6 +16,6 @@ if($num > 0){
 	echo "Berhasil tambah Data";
 	header("location:Login.html");
 }else{
-	header("location:Signup.html?pesan=gagal");
+	header("location:visual.html?pesan=gagal");
 }
 ?>

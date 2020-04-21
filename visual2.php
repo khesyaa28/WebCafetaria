@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Login</title>
+  <title>Show yours Here</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./assets/bootstrap-4.4.1-dist/css/bootstrap.css">
   
 </head>
+<?php include 'detail.php'; ?>
 <body>
     <link rel="stylesheet" href="assets/bootstrap-4.4.1-dist/js/bootstrap.js">
 
@@ -16,8 +17,8 @@
     </div>
     
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      
-      <a class="navbar-brand" href="index.html"><p class="text-info"><img src="latte o.png" height="140"></p></a>
+        
+    <a class="navbar-brand" href="index.html"><p class="text-info"><img src="latte o.png" height="140"></p></a>
       <div class="container" style="margin-top:5px">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -31,62 +32,80 @@
             <a class="nav-link" href="History.html">History</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href=".html">Profile</a>
+            <a class="nav-link" href="Profile.html">Profile</a>
           </li>    
           <li class="nav-item">
             <a class="nav-link" href="Abouts.html">About Us</a>
           </li>   
           <li class="nav-item">
-            <a class="nav-link" href="signup.html">Login</a>
+            <a class="nav-link" href="Signup.html">Login</a>
           </li>   
         </ul>
       </div>  
     </div>
     </nav>
-    
-    
+
+    <div class="alert alert-success alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Success!</strong> You just Log in.
+  </div>
     <div class="container">
-      <div class="container" style="margin-top:70px">
+      <div class="container" style="margin-top:50px">
         <div class="row">
-           <div class="col-sm-6">
-             <center><img src="latte o.png" alt="">
-              <br><br>
-          <h2>Sign Up Form</h2></center>
-        <form action="create.php" method="POST">
-          <div class="form-group">
-            <label for="NIK">NIK :</label>
-            <input type="text" class="form-control" id="NIK" placeholder="Enter NIK" name="NIK">
-          </div>
-         
-          <div class="form-group">
-            <label for="Name">Name :</label>
-            <input type="text" class="form-control" id="Name" placeholder="Enter Name" name="Name">
-          </div>
-          <div class="form-group">
-            <label for="Username">Userame :</label>
-            <input type="text" class="form-control" id="Username" placeholder="Enter 8 digit Username" name="Username">
-          </div>
-          <div class="form-group">
-            <label for="City">City :</label>
-            <input type="text" class="form-control" id="City" placeholder="Enter your City" name="City">
-          </div>
-          <div class="form-group">
-            <label for="password">Password :</label>
-            <input type="password" class="form-control" id="Password" placeholder="Enter 8 digit Password" name="Password">
-          </div>
-          <div class="form-group form-check">
-            <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" name="remember"> Remember me!
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-      <br><br><br>
-      
-      
+           <div class="col-sm-7">
+        <center><h2 style="font-family: Courier;"><b>Data Page</b></h2></center>
+        <?php
+          echo"Selamat Datang ".$_SESSION['Username']; echo". Terima Kasih sudah berlangganan";
+          ?>
+
+          <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>NIK</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>City</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php 
+include "connect.php";
+$query="SELECT * FROM signup ";
+$sql= mysqli_query($connect,$query);
+
+while($data=mysqli_fetch_array($sql)){
+    echo "<tr>";
+    echo "<td>".$data['NIK']."</td>";
+    echo "<td>".$data['Name']."</td>";
+    echo "<td>".$data['Username']."</td>";
+    echo "<td>".$data['City']."</td>";
+    echo "<td>".$data['Password']."</td>";
+    echo "</tr>";
+}?>
+    </tbody>
+  </table>
+  <div class="container">
+    <div class="row">
+        <div class="col"><a href="edit.php" class="btn btn-outline-dark" role="button">Edit</a></div>
+        <div class="col"><a href="delete.php" class="btn btn-outline-dark" role="button">Delete</a></div>
+        <div class="col"><a href="logout.php" class="btn btn-outline-dark" role="button">Logout</a></div>
+
+    </div>
+  </div>
+</table>
 
 </div>
+      </div>
+      <br><br><br>
+     
+      <div class="col-sm-4">
+      
+      <div class="jumbotron text-center" style="margin-bottom:3px">
+        <p>Footer</p>
+      </div>
+</div>
+
 </div>
 </div>
 <br><br><br>

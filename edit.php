@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Login</title>
+  <title>Edit Here</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./assets/bootstrap-4.4.1-dist/css/bootstrap.css">
@@ -9,6 +9,15 @@
 </head>
 <body>
     <link rel="stylesheet" href="assets/bootstrap-4.4.1-dist/js/bootstrap.js">
+<?php
+        include 'detail.php';
+   ?>
+   <?php include 'connect.php';
+    $NIK = @$_GET['NIK'];
+    $query = "SELECT * FROM signup WHERE NIK = '$NIK'";
+    $result = $connect->query($query);
+    $row = $result->fetch_assoc();
+?>
 
     <div class="jumbotron text-center" style="background-color:tan;" style="margin-bottom:1px">
       <h1>Latte O Cafetaria</h1>
@@ -17,7 +26,7 @@
     
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         
-      <a class="navbar-brand" href="index.html"><p class="text-info"><img src="latte o.png" height="140"></p></a>
+    <a class="navbar-brand" href="index.html"><p class="text-info">Latte O</p></a>
       <div class="container" style="margin-top:5px">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -31,13 +40,13 @@
             <a class="nav-link" href="History.html">History</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href=".html">Profile</a>
+            <a class="nav-link" href="Profile.html">Profile</a>
           </li>    
           <li class="nav-item">
             <a class="nav-link" href="Abouts.html">About Us</a>
           </li>   
           <li class="nav-item">
-            <a class="nav-link" href="signup.html">Login</a>
+            <a class="nav-link" href="Signup.html">Login</a>
           </li>   
         </ul>
       </div>  
@@ -49,40 +58,46 @@
       <div class="container" style="margin-top:50px">
         <div class="row">
            <div class="col-sm-7">
-             <center><img src="latte o.png" alt="">
-                    <br><br><br>
-              <h2>Login Form</h2></center>
-              <form action="ceklog.php" method="POST">
-
-              <div class="form-group">
-                <label for="Username">Username :</label>
-                <input type="text" class="form-control" id="Username" placeholder="Enter Username" name="Username">
-              </div>
-              
-              <div class="form-group">
-                <label for="password">Password :</label>
-                <input type="password" class="form-control" id="Password" placeholder="Enter Password" name="Password">
-              </div>
-              <div class="form-group form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" name="remember"> Remember me!
-                </label>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <center>Create an Account?<a href=Signup.html>Signup now</a></center>
-          </div>
-          <br><br><br>
-          
-<div class=col-sm-4>
+        <center><h2 style="font-family: Courier;"><b>Edit Page</b></h2></center>
+      <br>
+        <h5><?php echo"Hi! ".$_SESSION['Username']; echo". You can update yor data :)";
+          ?></h1>
+          <form action="cekedit.php" method="POST">
+        <table>
+            <tr>
+                <td><label>New NIK</label></td>
+                <td><input type="text" name="NIK" class="form-group" placeholder="Enter NIK" id="NIK" value="<?php echo $row['NIK']; ?>"></td>
+            </tr>
+            <tr>
+                <td><label>New Name:</label></td>
+                <td><input type="text" name="Name" class="form-group" placeholder="Enter Name" id="Name" value="<?php echo $row['Name']; ?>"></td>
+            </tr>
+            <tr>
+                <td><label>New Username:</label></td>
+                <td><input type="text" name="Username" class="form-group" placeholder="Username" id="Username" value="<?php echo $row['Username']; ?>"></td>
+            </tr>
+            <tr>
+                <td><label>New City:</label></td>
+                <td><input type="text" name="City" class="form-group" placeholder="Enter City" id="City" value="<?php echo $row['City']; ?>"></td>
+            </tr>
+            <tr>
+                <td><label>New Password:</label></td>
+                <td><input type="password" name="Password" class="form-group" placeholder="Password" id="Password" value="<?php echo $row['Password']; ?>"></td>
+            </tr>
+        </table><br><br><br>
+        <input type="submit" class="btn btn-primary" value="SAVE"></td><br><br>
+        
+    
+      </div>
+      <br><br><br>
       <div class="jumbotron text-center" style="margin-bottom:3px">
-          <p>Footer</p></div></div>
-</div>
-
-       
-  </div>
-</div>
+        <p>Footer</p>
+      </div>
       
+
+</div>
+</div>
+</div>
 <br><br><br>
 <div class="jumbotron text-center" style="margin-bottom:1px">
   
@@ -98,5 +113,8 @@
     </div>
     <br>
       <p>Visit us in &#128204; Via Monsignor Egidio Bignamini, 35, 60126 Ancona AN, Italia</p>
+      
+
+      
 </body>
 </html>
